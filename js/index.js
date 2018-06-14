@@ -28,23 +28,25 @@ $(document).ready(function () {
                 var docPic = data.profile.image_url;
                 var docBio = data.profile.bio;
                 var docPhone = data.practices[0].phones[0].number;
-                var docInfo = data.practices[0].name + "<br>" + data.practices[0].visit_address.street + ", " + data.practices[0].visit_address.zip;
+                var docInfo = data.practices[0].visit_address.street + ", " + data.practices[0].visit_address.city + ", "  + data.practices[0].visit_address.state;
+                var docWeb = data.practices[0].website 
                 let testHTML = `
             
-                <img class="img-fluid rounded-circle mb-3" src='${docPic}' id="docPic">
-             
-                 <small>${docSpeacialties}</small>
-                 <h3>Dr. ${docName}</h3>
-                 <div class="${docName.replace(/\s/g, '')}-doc-bio doc-bio">${docBio}</div>
-                 <ul>
-                    
-                 <li><span class="profile-link" href="#" onclick="onProfileClick('.${docName.replace(/\s/g, '')}-doc-bio')">Profile</span</li>
-                 <li>Phone#: <a href='tel:+1${docPhone}'>${docPhone}</a></li>
-                 
-                     
-                 </ul>
-             <hr>
-                 `;
+                   <img class="img-fluid rounded-circle mb-3" src='${docPic}' id="docPic">
+                <br>
+                   <h3>Dr. ${docName}</h3> 
+                   <small>${docSpeacialties}</small>
+                    <div class="${docName.replace(/\s/g, '')}-doc-bio doc-bio">${docBio}</div>
+                    <ul>
+                
+                       <a href='#'><li><span class="profile-link" href="#" onclick="onProfileClick('.${docName.replace(/\s/g, '')}-doc-bio')">Profile</span</li></a>
+                        <li><a href ='${docWeb}' target ='_blank'>Website</a><li>
+                        <li>${docInfo}</li>
+                        <li>Phone#: <a href='tel:+1${docPhone}'>${docPhone}</a></li>
+                        
+                    </ul>
+                <hr>
+                    `;
 
          $('.test').append(testHTML);
 

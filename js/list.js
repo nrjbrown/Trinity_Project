@@ -29,17 +29,20 @@ document.addEventListener('DOMContentLoaded', function (e) {
             var docPic = data.profile.image_url;
             var docBio = data.profile.bio;
             var docPhone = data.practices[0].phones[0].number;
-            var docInfo = data.practices[0].name + "<br>" + data.practices[0].visit_address.street + ", " + data.practices[0].visit_address.zip;
+            var docWeb = data.practices[0].website 
+            var docInfo = data.practices[0].visit_address.street + ", " + data.practices[0].visit_address.city + ", "  + data.practices[0].visit_address.state;
             let testHTML = `
             
                    <img class="img-fluid rounded-circle mb-3" src='${docPic}' id="docPic">
-                
-                    <small>${docSpeacialties}</small>
-                    <h3>Dr. ${docName}</h3>
+                <br>
+                   <h3>Dr. ${docName}</h3> 
+                   <small>${docSpeacialties}</small>
                     <div class="${docName.replace(/\s/g, '')}-doc-bio doc-bio">${docBio}</div>
                     <ul>
-                       
-                        <li><span class="profile-link" href="#" onclick="onProfileClick('.${docName.replace(/\s/g, '')}-doc-bio')">Profile</span</li>
+                
+                       <a href='#'><li><span class="profile-link" href="#" onclick="onProfileClick('.${docName.replace(/\s/g, '')}-doc-bio')">Profile</span</li></a>
+                        <li><a href ='${docWeb}' target ='_blank'>Website</a><li>
+                        <li>${docInfo}</li>
                         <li>Phone#: <a href='tel:+1${docPhone}'>${docPhone}</a></li>
                         
                     </ul>
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
             var results = response.data;
             var lat = parseFloat(response.data[0].practices[0].lat);
             var lng = parseFloat(response.data[0].practices[0].lon);
+            
             // The map, centered at Doctor
             // TODO: How to centre map amongst all different practices location
             var map = new google.maps.Map(document.getElementById('map_listing'), { zoom: 4, center: { lat: lat, lng: lng } });
@@ -58,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
                 var result = results[i];
                 console.log(result);
                 // // The location of doctor
-                var doctorLocation = { lat: parseFloat(result.practices[0].lat), lng: parseFloat(result.practices[0].lon) };
+                var doctorLocation = {lat: parseFloat(result.practices[0].lat), lng: parseFloat(result.practices[0].lon) };
                 console.log(doctorLocation);
                 // // The marker, positioned at Uluru
-                var marker = new google.maps.Marker({ position: doctorLocation, map: map });
+                var marker = new google.maps.Marker({ position: doctorLocation, map: map, animation:google.maps.Animation.DROP});
             }
         });
     }).fail(function (error) {

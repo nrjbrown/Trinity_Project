@@ -21,6 +21,7 @@ $(document).ready(function () {
     $("#search-button").on("click", function (event) {
         console.log('Map Object');
         event.preventDefault();
+        $('.test').empty();
         var user_input = document.getElementById('condition').value;
         //function carries out the event to retrieve data based on user query
 
@@ -50,7 +51,7 @@ $(document).ready(function () {
                     var doctorLocation = { lat: parseFloat(result.practices[0].lat), lng: parseFloat(result.practices[0].lon) };
                     console.log(doctorLocation);
                     // // The marker, positioned at Uluru
-                    var marker = new google.maps.Marker({ position: doctorLocation, map: map });
+                    var marker = new google.maps.Marker({ position: doctorLocation, map: map, animation:google.maps.Animation.DROP });
 
                   
             
