@@ -17,7 +17,7 @@ there is currently a bug in the search field as some conditions may not trigger 
 
 ## Preview
 
-[![Landing Page Preview](https://nrjbrown.github.io/Trinity_Project/)
+
 
 **[View Live Preview](https://nrjbrown.github.io/Trinity_Project/)**
  
